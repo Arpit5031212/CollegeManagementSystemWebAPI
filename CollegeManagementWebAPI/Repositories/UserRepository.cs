@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using CollegeManagementWebAPI.Models;
+using CollegeManagementWebAPI.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,24 +21,96 @@ namespace CollegeManagementWebAPI.Repositories
             db = _dbContext;
             _mapper = mapper;
         }
-        public Task<Student> CreateStudentAsync(Student student)
+        public async Task<StudentViewModel> AddStudentAsync(Student student)
         {
-            throw new System.NotImplementedException();
+
+            var new_login = new Login()
+            {
+                Username = student.Email,
+                Password = student.Name,
+                IsVerified = true,
+                UserRole = 2,
+                Token = null,
+                TokenExpired = false,
+                CreatedAt = System.DateTime.Now,
+                UpdatedAt = System.DateTime.Now,
+                LastLogin = null,
+                LastIp = null,
+            };
+
+            db.Logins.Add(new_login);
+            await db.SaveChangesAsync();
+
+            var new_student = new Student()
+            {
+                Name = student.Name,
+                RollNo = student.RollNo,
+                ClassId = student.ClassId,
+                Dob = student.Dob,
+                Contact = student.Contact,
+                Email = student.Email,
+                Address = student.Address,
+                CourseId = student.CourseId,
+            };
+
+            db.Students.Add(new_student);
+            await db.SaveChangesAsync();
+
+
+            StudentViewModel _student = _mapper.Map<StudentViewModel>(student);
+
+            return _student;
         }
 
-        public Task<Teacher> CreateTeacherAsync(Teacher teacher)
+        public async Task<Teacher> AddTeacherAsync(Teacher teacher)
         {
-            throw new System.NotImplementedException();
+            var new_login = new Login()
+            {
+                Username = teacher.Email,
+                Password = teacher.Name,
+                IsVerified = true,
+                UserRole = 1,
+                Token = null,
+                TokenExpired = false,
+                CreatedAt = System.DateTime.Now,
+                UpdatedAt = System.DateTime.Now,
+                LastLogin = null,
+                LastIp = null,
+            };
+
+            db.Logins.Add(new_login);
+            await db.SaveChangesAsync();
+
+            var new_teacher = new Teacher()
+
+            {
+                Name = teacher.Name,
+                Dob = teacher.Dob,
+                Department = teacher.Department,
+                Contact = teacher.Contact,
+                Email = teacher.Email,
+                Address = teacher.Address,
+                Salary = teacher.Salary,
+            };
+            db.Teachers.Add(new_teacher);
+
+            await db.SaveChangesAsync();
+
+            return new_teacher;
         }
 
-        public Task DeleteStudentAsync(int roll)
+        public async Task DeleteStudentAsync(int roll)
         {
-            throw new System.NotImplementedException();
+            var student = new Student() { RollNo = roll };
+            db.Students.Remove(student);
+            await db.SaveChangesAsync();
         }
 
-        public Task DeleteTeacherAsync(string email)
+        public async Task DeleteTeacherAsync(int teacher_id)
         {
-            throw new System.NotImplementedException();
+            var teacher = new Teacher() { TeacherId = teacher_id };
+            db.Teachers.Remove(teacher);
+            await db.SaveChangesAsync();
         }
 
         public async Task<List<Student>> GetAllStudentsAsync()
@@ -140,14 +214,52 @@ namespace CollegeManagementWebAPI.Repositories
             return null;
         }
 
-        public Task<Student> UpdateStudentAsync(Student student)
+        public async Task UpdateStudentAsync(Student student, int id)
         {
-            throw new System.NotImplementedException();
+            var updated_student = new Student() 
+            {
+                StudentId = id,
+                Name = student.Name,
+                RollNo = student.RollNo,
+                ClassId = student.ClassId,
+                Dob = student.Dob,
+                Contact = student.Contact,
+                Email = student.Email,
+                Address = student.Address,
+                CourseId = student.CourseId,
+            };
+
+            db.Students.Update(updated_student);
+            await db.SaveChangesAsync();
         }
 
-        public Task<Teacher> UpdateTeacherAsync(Teacher teacher)
+        public async Task UpdateTeacherAsync(Teacher teacher, int teacher_id)
         {
-            throw new System.NotImplementedException();
+            var updated_teacher = new Teacher()
+            {
+                TeacherId = teacher_id,
+                Name = teacher.Name,
+                Dob = teacher.Dob,
+                Department = teacher.Department,
+                Contact = teacher.Contact,
+                Email = teacher.Email,
+                Address = teacher.Address,
+                Salary = teacher.Salary,
+            };
+
+            db.Teachers.Update(updated_teacher);
+            await db.SaveChangesAsync();
+        }
+
+        public int GetLoginId(string email)
+        {
+            if(db != null)
+            {
+                Login loginInfo = db.Logins.FirstOrDefault(login => login.Username == email);
+                return loginInfo.LoginId;
+            }
+
+            return -1;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace CollegeManagementWebAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-
+        
     }
 }

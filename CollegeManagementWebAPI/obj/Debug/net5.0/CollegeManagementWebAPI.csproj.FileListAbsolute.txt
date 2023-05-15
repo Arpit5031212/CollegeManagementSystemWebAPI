@@ -63,3 +63,8 @@ D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\obj
 D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\obj\Debug\net5.0\ref\CollegeManagementWebAPI.dll
 D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\AutoMapper.dll
 D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\ArgusoftInternshipProject\CollegeManagementWebAPI\CollegeManagementWebAPI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

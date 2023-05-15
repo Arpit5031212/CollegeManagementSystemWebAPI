@@ -4,6 +4,7 @@ using CollegeManagementWebAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CollegeManagementWebAPI
@@ -41,6 +43,7 @@ namespace CollegeManagementWebAPI
 
             services.AddDbContext<CollegeManagementSystemContext>(item => item.UseSqlServer(Configuration.GetConnectionString("CollegeDbConnectionString")));
             services.AddScoped<IUserRepository, UserRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

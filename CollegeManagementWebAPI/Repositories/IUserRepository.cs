@@ -1,4 +1,5 @@
 ﻿using CollegeManagementWebAPI.Models;
+using CollegeManagementWebAPI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,14 +19,17 @@ namespace CollegeManagementWebAPI.Repositories
         Task<List<Student>> GetStudentsByCourseAsync(string _course);
         Task<List<Student>> GetStudentsByClassAsync(string _class);
         Task<List<Teacher>> GetTeachersByDepartmentAsync(string department);        
-        Task<Student> CreateStudentAsync(Student student);
-        Task<Teacher> CreateTeacherAsync(Teacher teacher);
+        Task<StudentViewModel> AddStudentAsync(Student student);
+        Task<Teacher> AddTeacherAsync(Teacher teacher);
 
-        Task<Student> UpdateStudentAsync(Student student);
-        Task<Teacher> UpdateTeacherAsync(Teacher teacher);
+        Task UpdateStudentAsync(Student student, int id);
+        Task UpdateTeacherAsync(Teacher teacher, int teacher_id);
 
         Task DeleteStudentAsync(int roll);
-        Task DeleteTeacherAsync(string email);
+        Task DeleteTeacherAsync(int teacher_id);
+        int GetLoginId(string email);
+
+        //Task<Login> AddUserInLoginTable(Login login);
 
     }
 }
