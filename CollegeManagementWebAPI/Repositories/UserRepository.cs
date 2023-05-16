@@ -21,7 +21,7 @@ namespace CollegeManagementWebAPI.Repositories
             db = _dbContext;
             _mapper = mapper;
         }
-        public async Task<StudentViewModel> AddStudentAsync(Student student)
+        public async Task<Student> AddStudentAsync(StudentViewModel student)
         {
 
             var new_login = new Login()
@@ -56,13 +56,10 @@ namespace CollegeManagementWebAPI.Repositories
             db.Students.Add(new_student);
             await db.SaveChangesAsync();
 
-
-            StudentViewModel _student = _mapper.Map<StudentViewModel>(student);
-
-            return _student;
+            return new_student;
         }
 
-        public async Task<Teacher> AddTeacherAsync(Teacher teacher)
+        public async Task<Teacher> AddTeacherAsync(TeacherViewModel teacher)
         {
             var new_login = new Login()
             {
@@ -214,7 +211,7 @@ namespace CollegeManagementWebAPI.Repositories
             return null;
         }
 
-        public async Task UpdateStudentAsync(Student student, int id)
+        public async Task UpdateStudentAsync(StudentViewModel student, int id)
         {
             var updated_student = new Student() 
             {
@@ -233,7 +230,7 @@ namespace CollegeManagementWebAPI.Repositories
             await db.SaveChangesAsync();
         }
 
-        public async Task UpdateTeacherAsync(Teacher teacher, int teacher_id)
+        public async Task UpdateTeacherAsync(TeacherViewModel teacher, int teacher_id)
         {
             var updated_teacher = new Teacher()
             {

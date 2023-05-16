@@ -46,14 +46,14 @@ namespace CollegeManagementWebAPI.Controllers
         }
 
         [HttpPost("register/student")]
-        public async Task<IActionResult> AddNewStudent([FromBody] Student student)
+        public async Task<IActionResult> AddNewStudent([FromBody] StudentViewModel student)
         {
             var id = await _userRepository.AddStudentAsync(student);
             return Ok(id);
         }
 
         [HttpPost("register/teacher")]
-        public async Task<IActionResult> AddNewTeacher([FromBody] Teacher teacher)
+        public async Task<IActionResult> AddNewTeacher([FromBody] TeacherViewModel teacher)
         {
             var id = await _userRepository.AddTeacherAsync(teacher);
             return Ok(id);
@@ -118,7 +118,7 @@ namespace CollegeManagementWebAPI.Controllers
 
         [HttpPut("teacher/update/{id}")]
 
-        public async Task<IActionResult> UpdateTeacher([FromBody] Teacher teacher, [FromRoute] int id)
+        public async Task<IActionResult> UpdateTeacher([FromBody] TeacherViewModel teacher, [FromRoute] int id)
         {
             await _userRepository.UpdateTeacherAsync(teacher, id);
             return Ok();
@@ -126,7 +126,7 @@ namespace CollegeManagementWebAPI.Controllers
 
         [HttpPut("student/update/{id}")]
 
-        public async Task<IActionResult> UpdateStudent([FromBody] Student student, [FromRoute] int id)
+        public async Task<IActionResult> UpdateStudent([FromBody] StudentViewModel student, [FromRoute] int id)
         {
             await _userRepository.UpdateStudentAsync(student, id);
             return Ok();

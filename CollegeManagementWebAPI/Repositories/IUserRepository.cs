@@ -19,11 +19,11 @@ namespace CollegeManagementWebAPI.Repositories
         Task<List<Student>> GetStudentsByCourseAsync(string _course);
         Task<List<Student>> GetStudentsByClassAsync(string _class);
         Task<List<Teacher>> GetTeachersByDepartmentAsync(string department);        
-        Task<StudentViewModel> AddStudentAsync(Student student);
-        Task<Teacher> AddTeacherAsync(Teacher teacher);
+        Task<Student> AddStudentAsync(StudentViewModel student);
+        Task<Teacher> AddTeacherAsync(TeacherViewModel teacher);
 
-        Task UpdateStudentAsync(Student student, int id);
-        Task UpdateTeacherAsync(Teacher teacher, int teacher_id);
+        Task UpdateStudentAsync(StudentViewModel student, int id);
+        Task UpdateTeacherAsync(TeacherViewModel teacher, int teacher_id);
 
         Task DeleteStudentAsync(int roll);
         Task DeleteTeacherAsync(int teacher_id);

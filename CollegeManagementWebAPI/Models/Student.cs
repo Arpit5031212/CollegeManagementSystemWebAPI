@@ -23,7 +23,7 @@ namespace CollegeManagementWebAPI.Models
         [Column("NAME")]
         [StringLength(100)]
         public string Name { get; set; }
-        [Column("DOB", TypeName = "datetime")]
+        [Column("DOB", TypeName = "date")]
         public DateTime Dob { get; set; }
         [Required]
         [Column("CONTACT")]

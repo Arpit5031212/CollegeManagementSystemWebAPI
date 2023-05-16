@@ -1,11 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CollegeManagementWebAPI.ViewModels
 {
     public class StudentViewModel
     {
         public int StudentId { get; set; }
+
+        [Required]
         public int RollNo { get; set; }
+
+        [Required]
         public string Name { get; set; }
         public DateTime Dob { get; set; }
         public string Contact { get; set; }
